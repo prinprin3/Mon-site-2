@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanziaPro - Prestiti Personali Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#4F46E5',
+                        accent: '#06B6D4',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #5D5CDE 0%, #4F46E5 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .bg-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(93, 92, 222, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold gradient-bg bg-clip-text text-transparent">FinanziaPro</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Home</a>
+                        <a href="#servizi" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Servizi</a>
+                        <a href="#vantaggi" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Vantaggi</a>
+                        <a href="#richiesta" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Richiedi</a>
+                        <a href="#contatti" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Contatti</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" id="mobile-menu-btn" class="text-gray-700 dark:text-gray-300 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Home</a>
+                <a href="#servizi" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Servizi</a>
+                <a href="#vantaggi" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Vantaggi</a>
+                <a href="#richiesta" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Richiedi</a>
+                <a href="#contatti" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-16 bg-pattern min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+                        Prestiti <span class="gradient-bg bg-clip-text text-transparent">Personali</span> Rapidi e Sicuri
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                        Ottieni il finanziamento che ti serve con tassi competitivi e procedure semplificate. 
+                        La tua soluzione finanziaria personalizzata ti aspetta.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="scrollToSection('richiesta')" class="gradient-bg text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-calculator mr-2"></i>
+                            Calcola il Tuo Prestito
+                        </button>
+                        <button onclick="scrollToSection('servizi')" class="border-2 border-primary text-primary dark:text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary hover:text-white transition-all duration-300">
+                            Scopri di Più
+                        </button>
+                    </div>
+                    <div class="mt-8 flex items-center text-sm text-gray-500 dark:text-gray-400">
+                        <i class="fas fa-shield-alt text-green-500 mr-2"></i>
+                        <span>100% Sicuro e Protetto • Approvazione in 24h</span>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="animate-float">
+                        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 max-w-md mx-auto">
+                            <div class="text-center mb-6">
+                                <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-euro-sign text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Calcolo Rapido</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Importo desiderato</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">€</span>
+                                        <input type="number" class="w-full pl-8 pr-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="10,000" value="15000">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Durata (mesi)</label>
+                                    <select class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white">
+                                        <option>12 mesi</option>
+                                        <option>24 mesi</option>
+                                        <option>36 mesi</option>
+                                        <option>48 mesi</option>
+                                        <option>60 mesi</option>
+                                    </select>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">Rata mensile stimata</span>
+                                        <span class="text-2xl font-bold text-primary">€312</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servizi" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">I Nostri Servizi</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Offriamo soluzioni finanziarie personalizzate per ogni esigenza, con processi semplificati e tempi di risposta rapidi.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 card-hover">
+                    <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-home text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Prestiti Casa</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Finanziamenti per l'acquisto, ristrutturazione o miglioramento della tua abitazione con tassi vantaggiosi.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Fino a €500,000</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Durata fino a 30 anni</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>TAN da 2.5%</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 card-hover">
+                    <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-car text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Prestiti Auto</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Finanziamenti dedicati all'acquisto di veicoli nuovi e usati con condizioni competitive e procedure rapide.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Fino a €80,000</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Durata fino a 10 anni</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>TAN da 3.9%</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 card-hover">
+                    <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-shopping-bag text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Prestiti Personali</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Liquidità immediata per qualsiasi esigenza personale: viaggi, spese mediche, consolidamento debiti.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Fino a €50,000</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Durata fino a 8 anni</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>TAN da 4.5%</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 card-hover">
+                    <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Prestiti Studio</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Investi nel tuo futuro con finanziamenti dedicati a formazione, università e corsi di specializzazione.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Fino a €30,000</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Durata fino a 15 anni</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>TAN da 3.2%</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 card-hover">
+                    <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-briefcase text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Prestiti Business</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Soluzioni finanziarie per imprenditori e liberi professionisti che vogliono far crescere la propria attività.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Fino a €200,000</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Durata fino a 12 anni</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>TAN da 3.8%</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 card-hover">
+                    <div class="gradient-bg w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-clock text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Prestiti Rapidi</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Hai bisogno di liquidità immediata? Ottieni una risposta in 24 ore e i fondi in 48 ore.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Fino a €25,000</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Approvazione in 24h</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Erogazione in 48h</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="vantaggi" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Perché Scegliere FinanziaPro</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    La nostra esperienza e professionalità al tuo servizio per trovare la soluzione finanziaria più adatta alle tue esigenze.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-3 mr-4 flex-shrink-0">
+                                <i class="fas fa-bolt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Velocità Eccezionale</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Processi digitalizzati e automatizzati per una risposta in tempi record. La maggior parte delle richieste viene approvata entro 24 ore.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-3 mr-4 flex-shrink-0">
+                                <i class="fas fa-shield-alt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Massima Sicurezza</h3>
+                                <p class="text-gray-600 dark:text-gray-300">I tuoi dati sono protetti con tecnologie di crittografia avanzate. Siamo conformi alle normative GDPR e utilizziamo sistemi bancari certificati.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-3 mr-4 flex-shrink-0">
+                                <i class="fas fa-percentage text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Tassi Competitivi</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Offriamo alcuni dei tassi più vantaggiosi del mercato grazie alla nostra rete di partner finanziari e alla nostra esperienza decennale.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-3 mr-4 flex-shrink-0">
+                                <i class="fas fa-user-tie text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Consulenza Personalizzata</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Ogni cliente è unico. I nostri esperti ti accompagnano nella scelta della soluzione più adatta alle tue esigenze e possibilità.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-8">
+                    <div class="text-center">
+                        <div class="gradient-bg w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-trophy text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">La Nostra Garanzia</h3>
+                        <div class="space-y-6">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                                <div class="text-4xl font-bold text-primary mb-2">98%</div>
+                                <div class="text-gray-600 dark:text-gray-300">Tasso di soddisfazione clienti</div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                                <div class="text-4xl font-bold text-primary mb-2">24h</div>
+                                <div class="text-gray-600 dark:text-gray-300">Tempo medio di approvazione</div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                                <div class="text-4xl font-bold text-primary mb-2">15+</div>
+                                <div class="text-gray-600 dark:text-gray-300">Anni di esperienza nel settore</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loan Application Form -->
+    <section id="richiesta" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Richiedi il Tuo Prestito</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">
+                    Compila il modulo e ricevi una valutazione gratuita entro 24 ore. È semplice, veloce e senza impegno.
+                </p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8">
+                <form id="loanForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome *</label>
+                            <input type="text" name="nome" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="Il tuo nome">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cognome *</label>
+                            <input type="text" name="cognome" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="Il tuo cognome">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="La tua email">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Data di Nascita *</label>
+                            <input type="date" name="data_nascita" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Importo Richiesto (€) *</label>
+                            <input type="number" name="importo" min="1000" max="500000" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="15,000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Durata Prestito *</label>
+                            <select name="durata" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white">
+                                <option value="">Seleziona durata</option>
+                                <option value="12">12 mesi</option>
+                                <option value="24">24 mesi</option>
+                                <option value="36">36 mesi</option>
+                                <option value="48">48 mesi</option>
+                                <option value="60">60 mesi</option>
+                                <option value="84">84 mesi</option>
+                                <option value="120">120 mesi</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Reddito Mensile (€) *</label>
+                            <input type="number" name="reddito" min="500" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="2,500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tipo di Contratto *</label>
+                            <select name="contratto" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white">
+                                <option value="">Seleziona tipo</option>
+                                <option value="tempo-indeterminato">Tempo Indeterminato</option>
+                                <option value="tempo-determinato">Tempo Determinato</option>
+                                <option value="libero-professionista">Libero Professionista</option>
+                                <option value="pensionato">Pensionato</option>
+                                <option value="autonomo">Lavoratore Autonomo</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Finalità del Prestito *</label>
+                        <select name="finalita" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white">
+                            <option value="">Seleziona finalità</option>
+                            <option value="casa">Acquisto/Ristrutturazione Casa</option>
+                            <option value="auto">Acquisto Auto/Moto</option>
+                            <option value="personale">Spese Personali</option>
+                            <option value="consolidamento">Consolidamento Debiti</option>
+                            <option value="studio">Formazione/Studio</option>
+                            <option value="business">Investimento Business</option>
+                            <option value="altro">Altro</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Note Aggiuntive</label>
+                        <textarea name="note" rows="4" class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="Aggiungi eventuali informazioni aggiuntive che ritieni utili per la valutazione della tua richiesta..."></textarea>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <input type="checkbox" id="privacy" name="privacy" required class="mt-1 mr-3 h-5 w-5 text-primary focus:ring-primary border-gray-300 rounded">
+                        <label for="privacy" class="text-sm text-gray-600 dark:text-gray-300">
+                            Accetto l'<a href="#" class="text-primary hover:underline">informativa sulla privacy</a> e autorizzo il trattamento dei miei dati personali per la valutazione della richiesta di prestito. *
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="w-full gradient-bg text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Invia Richiesta di Valutazione
+                    </button>
+                </form>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <div class="flex items-center justify-center text-sm text-gray-500 dark:text-gray-400">
+                    <i class="fas fa-lock mr-2 text-green-500"></i>
+                    <span>I tuoi dati sono protetti e trattati nel rispetto della privacy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contatti" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Contattaci</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">
+                    Il nostro team di esperti è a tua disposizione per qualsiasi domanda o chiarimento.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-4 mr-6 flex-shrink-0">
+                                <i class="fas fa-envelope text-primary text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Email</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">Contattaci via email per qualsiasi informazione</p>
+                                <a href="mailto:josepintodasilva32@gmail.com" class="text-primary font-semibold hover:underline text-lg">
+                                    josepintodasilva32@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-4 mr-6 flex-shrink-0">
+                                <i class="fas fa-clock text-primary text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Orari di Lavoro</h3>
+                                <div class="space-y-1 text-gray-600 dark:text-gray-300">
+                                    <p>Lunedì - Venerdì: 9:00 - 18:00</p>
+                                    <p>Sabato: 9:00 - 13:00</p>
+                                    <p>Domenica: Chiuso</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 rounded-full p-4 mr-6 flex-shrink-0">
+                                <i class="fas fa-headset text-primary text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Supporto Clienti</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-2">Il nostro team di supporto è sempre disponibile per aiutarti</p>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                        <i class="fas fa-reply text-green-500 mr-2"></i>
+                                        <span>Risposta entro 2 ore</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                        <i class="fas fa-language text-blue-500 mr-2"></i>
+                                        <span>Supporto multilingua</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Invia un Messaggio</h3>
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome Completo *</label>
+                            <input type="text" name="nome_completo" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="Il tuo nome completo">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email *</label>
+                            <input type="email" name="email_contatto" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="La tua email">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Oggetto *</label>
+                            <input type="text" name="oggetto" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="Oggetto del messaggio">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Messaggio *</label>
+                            <textarea name="messaggio" rows="5" required class="w-full px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white" placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full gradient-bg text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-send mr-2"></i>
+                            Invia Messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-2xl font-bold gradient-bg bg-clip-text text-transparent mb-4">FinanziaPro</h3>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        Il tuo partner di fiducia per soluzioni finanziarie personalizzate. 
+                        Offriamo prestiti competitivi con processi semplificati e supporto professionale.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Servizi</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Prestiti Casa</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Prestiti Auto</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Prestiti Personali</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Prestiti Business</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Prestiti Studio</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Informazioni</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Chi Siamo</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Come Funziona</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        © 2024 FinanziaPro. Tutti i diritti riservati.
+                    </p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Termini e Condizioni</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success/Error Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4">
+            <div class="text-center">
+                <div id="modal-icon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i id="modal-icon-symbol" class="text-3xl"></i>
+                </div>
+                <h3 id="modal-title" class="text-2xl font-bold text-gray-900 dark:text-white mb-4"></h3>
+                <p id="modal-message" class="text-gray-600 dark:text-gray-300 mb-6"></p>
+                <button onclick="closeModal()" class="gradient-bg text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-all duration-300">
+                    Chiudi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const offset = 80; // Account for fixed header
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add click handlers to all navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href').substring(1);
+                if (sectionId) {
+                    scrollToSection(sectionId);
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Form submission handlers
+        function showModal(type, title, message) {
+            const modal = document.getElementById('modal');
+            const modalIcon = document.getElementById('modal-icon');
+            const modalIconSymbol = document.getElementById('modal-icon-symbol');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+
+            if (type === 'success') {
+                modalIcon.className = 'w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-green-100 dark:bg-green-900';
+                modalIconSymbol.className = 'text-3xl fas fa-check text-green-500';
+            } else {
+                modalIcon.className = 'w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-red-100 dark:bg-red-900';
+                modalIconSymbol.className = 'text-3xl fas fa-exclamation-triangle text-red-500';
+            }
+
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        // Loan form submission
+        document.getElementById('loanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.privacy) {
+                showModal('error', 'Attenzione', 'Devi accettare l\'informativa sulla privacy per procedere.');
+                return;
+            }
+
+            // Simulate form submission
+            setTimeout(() => {
+                showModal('success', 'Richiesta Inviata!', 
+                    'La tua richiesta di prestito è stata inviata con successo. ' +
+                    'Riceverai una risposta entro 24 ore all\'indirizzo email fornito.'
+                );
+                this.reset();
+            }, 1000);
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            setTimeout(() => {
+                showModal('success', 'Messaggio Inviato!', 
+                    'Il tuo messaggio è stato inviato con successo. ' +
+                    'Ti risponderemo il prima possibile.'
+                );
+                this.reset();
+            }, 1000);
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = ['home', 'servizi', 'vantaggi', 'richiesta', 'contatti'];
+            const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                const rect = element.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    current = section;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-primary');
+                }
+            });
+        });
+
+        // Loan calculator updates
+        const amountInput = document.querySelector('input[placeholder="10,000"]');
+        const durationSelect = document.querySelector('select');
+        const monthlyPayment = document.querySelector('.text-2xl.font-bold.text-primary');
+
+        function updateCalculator() {
+            const amount = parseFloat(amountInput.value) || 15000;
+            const duration = parseInt(durationSelect.value) || 36;
+            const rate = 0.045; // 4.5% annual rate
+            
+            const monthlyRate = rate / 12;
+            const numPayments = duration;
+            const monthlyPaymentCalc = amount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+            
+            monthlyPayment.textContent = `€${Math.round(monthlyPaymentCalc)}`;
+        }
+
+        if (amountInput && durationSelect) {
+            amountInput.addEventListener('input', updateCalculator);
+            durationSelect.addEventListener('change', updateCalculator);
+        }
+    </script>
+</body>
+</html>
+"Ajout du code du site"
